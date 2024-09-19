@@ -10,17 +10,10 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 public class ResponsePostDto {
-
     private Long postId;
-
     private String title;
-
     private String content;
-
     private int readCnt;
-
     private LocalDateTime createdAt;
-
     private LocalDateTime updatedAt;
-
 }

@@ -9,6 +9,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "post")
 @Getter
@@ -22,9 +25,12 @@ public class Post extends BaseTimeEntity {
     @Column(name = "post_id")
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "member_id")
-    private Member member;
+//    @ManyToOne
+//    @JoinColumn(name = "member_id")
+//    private Member member;
+
+    @OneToMany(mappedBy = "post")
+    private List<Comment> comment = new ArrayList<>();
 
     @Column(name = "title")
     private String title;
@@ -47,8 +53,8 @@ public class Post extends BaseTimeEntity {
                 .title(title)
                 .content(content)
                 .readCnt(readCnt)
-                .createdAt(getCreatedDt())
-                .updatedAt(getUpdatedDt())
+                .createdAt(createdDt)
+                .updatedAt(updatedDt)
                 .build();
     }
 

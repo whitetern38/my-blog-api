@@ -1,6 +1,5 @@
 package io.whitetern.myblog.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
@@ -17,11 +16,11 @@ public class BaseTimeEntity {
 
     @CreatedDate
     @Column(name = "created_dt")
-    private LocalDateTime createdDt;
+    protected LocalDateTime createdDt;
 
     @LastModifiedDate
     @Column(name = "updated_dt")
-    private LocalDateTime updatedDt;
+    protected LocalDateTime updatedDt;
 
     //    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
 
