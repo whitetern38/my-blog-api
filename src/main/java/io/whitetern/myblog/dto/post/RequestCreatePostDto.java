@@ -10,9 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class RequestCreatePostDto {
-
     private String title;
-
     private String content;
-
 }

@@ -7,9 +7,6 @@ import lombok.*;
 @NoArgsConstructor
 @Getter
 public class RequestUpdatePostDto {
-
     private String title;
-
     private String content;
-
 }
