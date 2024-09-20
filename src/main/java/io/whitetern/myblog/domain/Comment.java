@@ -35,11 +35,11 @@ public class Comment extends BaseTimeEntity {
         this.content = requestUpdateCommentDto.getContent();
     }
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "member_id", insertable = false, updatable = false)
-//    private Member member;
-//
-//    @Column(name = "member_id")
-//    private Long memberId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id", insertable = false, updatable = false)
+    private Member member;
+
+    @Column(name = "member_id")
+    private Long memberId;
 
 }
