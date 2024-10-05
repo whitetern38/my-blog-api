@@ -26,8 +26,8 @@ public class Post extends BaseTimeEntity {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "member_id")
-    private Member member;
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @OneToMany(mappedBy = "post")
     private List<Comment> comment = new ArrayList<>();
