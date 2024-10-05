@@ -1,4 +1,4 @@
-package io.whitetern.myblog;
+package io.whitetern.myblog.constants;
 
 public enum UserRole {
     USER,
