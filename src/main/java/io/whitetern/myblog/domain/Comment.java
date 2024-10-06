@@ -31,15 +31,15 @@ public class Comment extends BaseTimeEntity {
     @Column(name = "post_id")
     private Long postId;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+    private User user;
+
+    @Column(name = "user_id")
+    private Long userId;
+
     public void updateComment(RequestUpdateCommentDto requestUpdateCommentDto) {
         this.content = requestUpdateCommentDto.getContent();
     }
-
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "member_id", insertable = false, updatable = false)
-//    private Member member;
-//
-//    @Column(name = "member_id")
-//    private Long memberId;
 
 }

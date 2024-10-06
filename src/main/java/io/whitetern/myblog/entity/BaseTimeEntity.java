@@ -22,17 +22,4 @@ public class BaseTimeEntity {
     @Column(name = "updated_dt")
     protected LocalDateTime updatedDt;
 
-    //    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
-
-//    @PrePersist
-//    public void onPrePersist() {
-//        this.createdDt = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm:ss"));
-//        this.updatedDt = this.createdDt;
-//    }
-//
-//    @PreUpdate
-//    public void onPreUpdate() {
-//        this.updatedDt = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm:ss"));
-//    }
-
 }
