@@ -13,6 +13,7 @@ public class ResponsePostDto {
     private Long postId;
     private String title;
     private String content;
+    private Long userId;
     private int readCnt;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
