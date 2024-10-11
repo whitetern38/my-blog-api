@@ -4,6 +4,7 @@ import io.whitetern.myblog.dto.comment.RequestCreateCommentDto;
 import io.whitetern.myblog.dto.comment.RequestUpdateCommentDto;
 import io.whitetern.myblog.dto.comment.ResponseCommentDto;
 import io.whitetern.myblog.service.CommentService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ public class CommentController {
 
     @PostMapping
     public ResponseEntity<ResponseCommentDto> createComment(
-            @RequestBody RequestCreateCommentDto requestCreateCommentDto
+            @RequestBody @Valid RequestCreateCommentDto requestCreateCommentDto
     ) {
         return ResponseEntity.ok(commentService.createComment(requestCreateCommentDto));
     }
