@@ -1,10 +1,12 @@
 package io.whitetern.myblog.service;
 
 import io.whitetern.myblog.domain.Post;
+import io.whitetern.myblog.domain.User;
 import io.whitetern.myblog.dto.post.RequestCreatePostDto;
 import io.whitetern.myblog.dto.post.RequestUpdatePostDto;
 import io.whitetern.myblog.dto.post.ResponsePostDto;
 import io.whitetern.myblog.repository.PostRepository;
+import io.whitetern.myblog.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +19,7 @@ import java.util.stream.Collectors;
 public class PostService {
 
     private final PostRepository postRepository;
+    private final UserRepository userRepository;
 
     public List<ResponsePostDto> findAll() {
         return postRepository
@@ -33,13 +36,17 @@ public class PostService {
                 .toResponseDto();
     }
 
-    public ResponsePostDto save(RequestCreatePostDto requestCreatePostDto) {
-        return postRepository
-                .save(Post.builder()
-                    .title(requestCreatePostDto.getTitle())
-                    .content(requestCreatePostDto.getContent())
-                    .build())
-                .toResponseDto();
+    public ResponsePostDto createPost(RequestCreatePostDto requestCreatePostDto) {
+        User user = userRepository.findById(requestCreatePostDto.getUserId())
+                .orElseThrow(() -> new IllegalArgumentException("Create Post Error :: User Not Exists"));
+
+        Post post = Post.builder()
+                .title(requestCreatePostDto.getTitle())
+                .content(requestCreatePostDto.getContent())
+                .user(user)
+                .build();
+
+        return postRepository.save(post).toResponseDto();
     }
 
     @Transactional

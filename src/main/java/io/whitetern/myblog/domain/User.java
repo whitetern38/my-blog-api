@@ -1,7 +1,6 @@
 package io.whitetern.myblog.domain;
 
-import io.whitetern.myblog.UserRole;
-import io.whitetern.myblog.dto.user.ResponseUserDto;
+import io.whitetern.myblog.constants.UserRole;
 import io.whitetern.myblog.entity.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.*;

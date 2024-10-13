@@ -1,10 +1,10 @@
 package io.whitetern.myblog.controller;
 
-import io.whitetern.myblog.domain.Post;
 import io.whitetern.myblog.dto.post.RequestCreatePostDto;
 import io.whitetern.myblog.dto.post.RequestUpdatePostDto;
 import io.whitetern.myblog.dto.post.ResponsePostDto;
 import io.whitetern.myblog.service.PostService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,13 +21,17 @@ public class PostController {
     private final PostService postService;
 
     @PostMapping
-    public ResponseEntity<ResponsePostDto> createPost(@RequestBody RequestCreatePostDto requestCreatePostDto) {
-        ResponsePostDto savedPost = postService.save(requestCreatePostDto);
+    public ResponseEntity<ResponsePostDto> createPost(
+            @RequestBody @Valid RequestCreatePostDto requestCreatePostDto
+    ) {
+        ResponsePostDto savedPost = postService.createPost(requestCreatePostDto);
+
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{savedId}")
                 .buildAndExpand(savedPost.getPostId())
                 .toUri();
+
         return ResponseEntity.created(location).body(savedPost);
     }
 
