@@ -11,3 +11,8 @@ spring:
     properties:
       hibernate.format_sql: true
       dialect: org.hibernate.dialect.MySQL8InnoDBDialect
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      password: 1q2w3e4r!@
