@@ -12,11 +12,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-@Entity
 @Table(name = "user")
+@Entity
 @Getter
-@Builder
-@AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class User extends BaseTimeEntity implements UserDetails {
 
@@ -48,6 +46,19 @@ public class User extends BaseTimeEntity implements UserDetails {
 
     @OneToMany(mappedBy = "user")
     private List<Comment> comments = new ArrayList<>();
+
+    @Builder
+    public User(Long id, String email, String password, String name, String nickname, LocalDateTime birthDate, UserRole userRole, List<Post> posts, List<Comment> comments) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.nickname = nickname;
+        this.birthDate = birthDate;
+        this.userRole = userRole;
+        this.posts = posts;
+        this.comments = comments;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
