@@ -5,20 +5,11 @@ POST {{api-url}}/users
 Content-Type: application/json
 
 {
-  "email": "whitetern@gmail.com",
+  "loginId": "",
   "password1": "1234qwer",
-  "password2": "1234qwer",
+  "password2": "1234qwe",
   "name": "홍길동",
-  "nickname": "hongd",
+  "email": "testmail@gmail.com",
+  "phone": "",
   "birthDate": "1990-09-10 11:11:11"
-}
-
-
-### Post
-POST {{api-url}}/posts
-Content-Type: application/json
-
-{
-  "title": "asdsad",
-  "content": "sdsd"
 }
