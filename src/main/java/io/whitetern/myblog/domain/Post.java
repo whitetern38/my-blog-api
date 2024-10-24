@@ -4,20 +4,15 @@ import io.whitetern.myblog.dto.post.RequestUpdatePostDto;
 import io.whitetern.myblog.dto.post.ResponsePostDto;
 import io.whitetern.myblog.entity.BaseTimeEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
 @Table(name = "post")
+@Entity
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Post extends BaseTimeEntity {
 
     @Id
@@ -40,6 +35,16 @@ public class Post extends BaseTimeEntity {
 
     @Column(name = "read_cnt", columnDefinition = "integer default 0", nullable = false)
     private int readCnt;
+
+    @Builder
+    public Post(Long id, String title, String content, User user, List<Comment> comment, int readCnt) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.user = user;
+        this.comment = comment;
+        this.readCnt = readCnt;
+    }
 
 
     public void updatePost(RequestUpdatePostDto requestUpdatePostDto) {

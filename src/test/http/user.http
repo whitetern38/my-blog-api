@@ -1,0 +1,15 @@
+# User
+
+### User 생성하기
+POST {{api-url}}/users
+Content-Type: application/json
+
+{
+  "loginId": "",
+  "password1": "1234qwer",
+  "password2": "1234qwe",
+  "name": "홍길동",
+  "email": "testmail@gmail.com",
+  "phone": "",
+  "birthDate": "1990-09-10 11:11:11"
+}

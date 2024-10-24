@@ -22,11 +22,3 @@ The following guides illustrate how to use some features concretely:
 These additional references should also help you:
 
 * [Gradle Build Scans – insights for your project's build](https://scans.gradle.com#gradle)
-
-
-
-참고
-> https://dev-coco.tistory.com/106 
-
-> spring rest api crud
-> https://burpeekim.tistory.com/5

@@ -1,6 +1,5 @@
 package io.whitetern.myblog.domain;
 
-import io.whitetern.myblog.constants.UserRole;
 import io.whitetern.myblog.entity.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -12,11 +11,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-@Entity
 @Table(name = "user")
+@Entity
 @Getter
-@Builder
-@AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class User extends BaseTimeEntity implements UserDetails {
 
@@ -25,8 +22,8 @@ public class User extends BaseTimeEntity implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "email", unique = true, nullable = false)
-    private String email;
+    @Column(name = "login_id", nullable = false, unique = true)
+    private String loginId;
 
     @Column(name = "password", nullable = false)
     private String password;
@@ -34,8 +31,11 @@ public class User extends BaseTimeEntity implements UserDetails {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "nickname", nullable = false)
-    private String nickname;
+    @Column(name = "phone")
+    private String phone;
+
+    @Column(name = "email")
+    private String email;
 
     @Column(name = "birth_date")
     private LocalDateTime birthDate;
@@ -48,6 +48,17 @@ public class User extends BaseTimeEntity implements UserDetails {
 
     @OneToMany(mappedBy = "user")
     private List<Comment> comments = new ArrayList<>();
+
+    @Builder
+    public User(String loginId, String email, String password, String name, String phone, LocalDateTime birthDate, UserRole userRole) {
+        this.loginId = loginId;
+        this.password = password;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.birthDate = birthDate;
+        this.userRole = userRole;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

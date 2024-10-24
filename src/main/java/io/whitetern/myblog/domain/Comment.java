@@ -3,17 +3,12 @@ package io.whitetern.myblog.domain;
 import io.whitetern.myblog.dto.comment.RequestUpdateCommentDto;
 import io.whitetern.myblog.entity.BaseTimeEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Table(name = "comment")
 @Getter
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Comment extends BaseTimeEntity {
 
     @Id
@@ -37,6 +32,16 @@ public class Comment extends BaseTimeEntity {
 
     @Column(name = "user_id")
     private Long userId;
+
+    @Builder
+    public Comment(Long id, String content, Post post, Long postId, User user, Long userId) {
+        this.id = id;
+        this.content = content;
+        this.post = post;
+        this.postId = postId;
+        this.user = user;
+        this.userId = userId;
+    }
 
     public void updateComment(RequestUpdateCommentDto requestUpdateCommentDto) {
         this.content = requestUpdateCommentDto.getContent();
