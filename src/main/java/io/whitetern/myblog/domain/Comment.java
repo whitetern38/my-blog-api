@@ -23,24 +23,15 @@ public class Comment extends BaseTimeEntity {
     @JoinColumn(name = "post_id", insertable = false, updatable = false)
     private Post post;
 
-    @Column(name = "post_id")
-    private Long postId;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private User user;
 
-    @Column(name = "user_id")
-    private Long userId;
-
     @Builder
-    public Comment(Long id, String content, Post post, Long postId, User user, Long userId) {
-        this.id = id;
+    public Comment(String content, Post post, User user) {
         this.content = content;
         this.post = post;
-        this.postId = postId;
         this.user = user;
-        this.userId = userId;
     }
 
     public void updateComment(RequestUpdateCommentDto requestUpdateCommentDto) {

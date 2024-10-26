@@ -38,8 +38,6 @@ public class CommentService {
 
         return ResponseCommentDto.builder()
                 .commentId(createdComment.getId())
-                .postId(createdComment.getPostId())
-                .userId(createdComment.getUserId())
                 .content(createdComment.getContent())
                 .build();
     }
