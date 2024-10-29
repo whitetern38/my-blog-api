@@ -3,7 +3,7 @@ package io.whitetern.myblog.service;
 import io.whitetern.myblog.domain.User;
 import io.whitetern.myblog.dto.auth.RequestLoginDto;
 import io.whitetern.myblog.exception.AuthException;
-import io.whitetern.myblog.repository.UserRepository;
+import io.whitetern.myblog.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

@@ -4,7 +4,7 @@ import io.whitetern.myblog.domain.User;
 import io.whitetern.myblog.dto.user.RequestCreateUserDto;
 import io.whitetern.myblog.dto.user.ResponseUserDto;
 import io.whitetern.myblog.exception.UserException;
-import io.whitetern.myblog.repository.UserRepository;
+import io.whitetern.myblog.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

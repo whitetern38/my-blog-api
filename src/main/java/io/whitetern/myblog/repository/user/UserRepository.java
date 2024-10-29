@@ -1,4 +1,4 @@
-package io.whitetern.myblog.repository;
+package io.whitetern.myblog.repository.user;
 
 import io.whitetern.myblog.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
