@@ -11,6 +11,8 @@
 - Redis 설정
   >https://velog.io/@donkey8/Redis-%EC%B2%AB-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0with-Springboot
 
+- 스프링 DB Master/Slave replication 구성
+  > https://evoblog.life/replication/
 
 참고
 > https://dev-coco.tistory.com/106
