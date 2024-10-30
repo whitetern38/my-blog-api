@@ -1,4 +1,4 @@
-package io.whitetern.myblog.common;
+package io.whitetern.myblog.dto;
 
 import lombok.AccessLevel;
 import lombok.Getter;

@@ -1,7 +1,6 @@
 package io.whitetern.myblog.domain;
 
 import io.whitetern.myblog.dto.comment.RequestUpdateCommentDto;
-import io.whitetern.myblog.entity.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
