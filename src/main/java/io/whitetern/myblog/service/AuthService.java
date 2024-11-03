@@ -1,16 +1,20 @@
 package io.whitetern.myblog.service;
 
+import io.whitetern.myblog.auth.AuthenticatedUser;
 import io.whitetern.myblog.domain.User;
 import io.whitetern.myblog.dto.auth.RequestLoginDto;
 import io.whitetern.myblog.exception.AuthException;
 import io.whitetern.myblog.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class AuthService {
+public class AuthService implements UserDetailsService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
@@ -24,6 +28,13 @@ public class AuthService {
         }
 
         return user;
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String loginId) throws UsernameNotFoundException {
+        User user = userRepository.findByLoginId(loginId)
+                .orElseThrow(() -> new AuthException("as"));
+        return new AuthenticatedUser(user);
     }
 
 }

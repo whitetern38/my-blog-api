@@ -6,15 +6,12 @@ import io.whitetern.myblog.dto.user.ResponseUserDto;
 import io.whitetern.myblog.exception.UserException;
 import io.whitetern.myblog.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class UserService implements UserDetailsService {
+public class UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
@@ -50,10 +47,4 @@ public class UserService implements UserDetailsService {
         return userRepository.findByLoginId(loginId).isPresent();
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String loginId) throws UsernameNotFoundException {
-        return userRepository.findByLoginId(loginId)
-                .orElseThrow(() -> new UserException("as"));
-
-    }
 }
