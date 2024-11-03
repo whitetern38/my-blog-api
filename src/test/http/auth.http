@@ -1,0 +1,12 @@
+### 로그인 테스트
+POST {{api-url}}/auth/login
+Content-Type: application/json
+
+{
+  "loginId": "testid1",
+  "password": "!1234qwer"
+}
+
+
+### 로그아웃 테스트
+POST {{api-url}}/auth/logout

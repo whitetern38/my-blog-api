@@ -1,7 +1,7 @@
 # User
 
 ### User 조회
-GET {{api-url}}/users/2
+GET {{api-url}}/users/1
 
 
 ### User 생성
