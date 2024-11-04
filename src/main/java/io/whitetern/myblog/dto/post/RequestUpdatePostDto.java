@@ -1,12 +1,11 @@
 package io.whitetern.myblog.dto.post;
 
-import lombok.*;
+import jakarta.validation.constraints.NotBlank;
 
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-public class RequestUpdatePostDto {
-    private String title;
-    private String content;
-}
+public record RequestUpdatePostDto(
+        @NotBlank
+        String title,
+
+        @NotBlank
+        String content
+) {}

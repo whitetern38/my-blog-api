@@ -30,16 +30,25 @@ public class UserService {
 
     public Long createUser(RequestCreateUserDto requestCreateUserDto) {
         validateCreateUser(requestCreateUserDto);
-        return userRepository.save(requestCreateUserDto.toEntity(passwordEncoder)).getId();
+        return userRepository.save(
+                User.builder()
+                        .loginId(requestCreateUserDto.loginId())
+                        .password(passwordEncoder.encode(requestCreateUserDto.password()))
+                        .name(requestCreateUserDto.name())
+                        .email(requestCreateUserDto.email())
+                        .phone(requestCreateUserDto.phone())
+                        .birthDate(requestCreateUserDto.birthDate())
+                    .build())
+                .getId();
     }
 
     private void validateCreateUser(RequestCreateUserDto requestCreateUserDto) {
-        if (!requestCreateUserDto.getPassword().equals(requestCreateUserDto.getPasswordConfirm())) {
-            throw new UserException("Password Not Equal");
+        if (!requestCreateUserDto.password().equals(requestCreateUserDto.passwordConfirm())) {
+            throw new UserException(ErrorCode.PASSWORD_NOT_EQUAL);
         }
 
-        if (isAlreadyExistsLoginId(requestCreateUserDto.getLoginId())) {
-            throw new UserException("LoginId Already Exists");
+        if (isAlreadyExistsLoginId(requestCreateUserDto.loginId())) {
+            throw new UserException(ErrorCode.ALREADY_EXIST_LOGIN_ID);
         }
     }
 

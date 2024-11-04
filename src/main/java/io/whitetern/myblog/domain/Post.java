@@ -47,8 +47,8 @@ public class Post extends BaseTimeEntity {
 
 
     public void updatePost(RequestUpdatePostDto requestUpdatePostDto) {
-        this.title = requestUpdatePostDto.getTitle();
-        this.content = requestUpdatePostDto.getContent();
+        this.title = requestUpdatePostDto.title();
+        this.content = requestUpdatePostDto.content();
     }
 
     public ResponsePostDto toResponseDto() {

@@ -1,17 +1,19 @@
 package io.whitetern.myblog.dto.comment;
 
-import lombok.AllArgsConstructor;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 
-@Getter
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
-public class ResponseCommentDto {
-    private Long commentId;
-    private Long userId;
-    private Long postId;
-    private String content;
-}
+public record ResponseCommentDto(
+    @NotNull
+    Long commentId,
+
+    Long userId,
+
+    @NotNull
+    Long postId,
+
+    @NotBlank
+    String content
+) {}

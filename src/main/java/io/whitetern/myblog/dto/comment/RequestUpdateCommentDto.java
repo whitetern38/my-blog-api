@@ -1,13 +1,12 @@
 package io.whitetern.myblog.dto.comment;
 
-import lombok.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
-@Getter
-@Setter
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-public class RequestUpdateCommentDto {
-    private Long commentId;
-    private String content;
-}
+public record RequestUpdateCommentDto(
+    @NotNull
+    Long commentId,
+
+    @NotBlank
+    String content
+) {}

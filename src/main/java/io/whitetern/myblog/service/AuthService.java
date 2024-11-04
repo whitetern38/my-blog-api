@@ -20,10 +20,10 @@ public class AuthService implements UserDetailsService {
     private final PasswordEncoder passwordEncoder;
 
     public User login(RequestLoginDto requestLoginDto) {
-        User user = userRepository.findByLoginId(requestLoginDto.getLoginId())
+        User user = userRepository.findByLoginId(requestLoginDto.loginId())
                 .orElseThrow(() -> new AuthException("해당 아이디로 가입된 정보가 없습니다."));
 
-        if (!passwordEncoder.matches(requestLoginDto.getPassword(), user.getPassword())) {
+        if (!passwordEncoder.matches(requestLoginDto.password(), user.getPassword())) {
             throw new AuthException("비밀번호가 일치하지 않습니다.");
         }
 

@@ -29,7 +29,7 @@ public class PostController {
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{savedId}")
-                .buildAndExpand(savedPost.getPostId())
+                .buildAndExpand(savedPost.postId())
                 .toUri();
 
         return ResponseEntity.created(location).body(savedPost);

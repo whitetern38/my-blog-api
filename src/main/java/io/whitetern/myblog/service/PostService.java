@@ -37,12 +37,12 @@ public class PostService {
     }
 
     public ResponsePostDto createPost(RequestCreatePostDto requestCreatePostDto) {
-        User user = userRepository.findById(requestCreatePostDto.getUserId())
+        User user = userRepository.findById(requestCreatePostDto.userId())
                 .orElseThrow(() -> new IllegalArgumentException("Create Post Error :: User Not Exists"));
 
         Post post = Post.builder()
-                .title(requestCreatePostDto.getTitle())
-                .content(requestCreatePostDto.getContent())
+                .title(requestCreatePostDto.title())
+                .content(requestCreatePostDto.content())
                 .user(user)
                 .build();
 

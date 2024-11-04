@@ -1,25 +1,14 @@
 package io.whitetern.myblog.dto.post;
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 
-@Getter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-public class RequestCreatePostDto {
+public record RequestCreatePostDto(
+        @NotBlank
+        String title,
 
-    @NotBlank
-    private String title;
+        @NotBlank
+        String content,
 
-    @NotBlank
-    private String content;
-
-    @NotNull
-    private Long userId;
-
-}
+        @NotBlank
+        Long userId
+) {}

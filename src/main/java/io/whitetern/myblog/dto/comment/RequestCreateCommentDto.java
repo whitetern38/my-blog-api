@@ -4,20 +4,13 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
-@Getter
-@Setter
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-public class RequestCreateCommentDto {
-
+public record RequestCreateCommentDto(
     @NotBlank
-    private String content;
+    String content,
 
     @NotNull
-    private Long postId;
+    Long postId,
 
     @NotNull
-    private Long userId;
-
-}
+    Long userId
+) {}

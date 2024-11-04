@@ -22,17 +22,17 @@ public class CommentService {
     private final PostRepository postRepository;
 
     public ResponseCommentDto createComment(RequestCreateCommentDto requestCreateCommentDto) {
-        User user = userRepository.findById(requestCreateCommentDto.getUserId())
+        User user = userRepository.findById(requestCreateCommentDto.userId())
                 .orElseThrow(IllegalArgumentException::new);
 
-        Post post = postRepository.findById(requestCreateCommentDto.getPostId())
+        Post post = postRepository.findById(requestCreateCommentDto.postId())
                 .orElseThrow(IllegalArgumentException::new);
 
         Comment createdComment = commentRepository.save(
                 Comment.builder()
                         .post(post)
                         .user(user)
-                        .content(requestCreateCommentDto.getContent())
+                        .content(requestCreateCommentDto.content())
                         .build()
         );
 
@@ -45,7 +45,7 @@ public class CommentService {
     @Transactional
     public void updateComment(RequestUpdateCommentDto requestUpdateCommentDto) {
         commentRepository
-                .findById(requestUpdateCommentDto.getCommentId())
+                .findById(requestUpdateCommentDto.commentId())
                 .orElseThrow(RuntimeException::new)
                 .updateComment(requestUpdateCommentDto);
     }

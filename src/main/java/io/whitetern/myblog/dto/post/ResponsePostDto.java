@@ -1,20 +1,16 @@
 package io.whitetern.myblog.dto.post;
 
-import lombok.*;
+import lombok.Builder;
 
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
-public class ResponsePostDto {
-    private Long postId;
-    private String title;
-    private String content;
-    private Long userId;
-    private int readCnt;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
-}
+public record ResponsePostDto(
+    Long postId,
+    String title,
+    String content,
+    Long userId,
+    int readCnt,
+    LocalDateTime createdAt,
+    LocalDateTime updatedAt
+) {}
