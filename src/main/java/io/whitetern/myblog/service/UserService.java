@@ -1,5 +1,6 @@
 package io.whitetern.myblog.service;
 
+import io.whitetern.myblog.constants.ErrorCode;
 import io.whitetern.myblog.domain.User;
 import io.whitetern.myblog.dto.user.RequestCreateUserDto;
 import io.whitetern.myblog.dto.user.ResponseUserDto;
@@ -18,7 +19,7 @@ public class UserService {
 
     public ResponseUserDto getUser(Long userId) {
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new UserException("User not Found"));
+                .orElseThrow(() -> new UserException(ErrorCode.USER_NOT_FOUND));
         return ResponseUserDto.builder()
                 .loginId(user.getLoginId())
                 .name(user.getName())

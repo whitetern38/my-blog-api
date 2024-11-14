@@ -1,6 +1,7 @@
 package io.whitetern.myblog.service;
 
 import io.whitetern.myblog.auth.AuthenticatedUser;
+import io.whitetern.myblog.constants.ErrorCode;
 import io.whitetern.myblog.domain.User;
 import io.whitetern.myblog.dto.auth.RequestLoginDto;
 import io.whitetern.myblog.exception.AuthException;
@@ -21,10 +22,10 @@ public class AuthService implements UserDetailsService {
 
     public User login(RequestLoginDto requestLoginDto) {
         User user = userRepository.findByLoginId(requestLoginDto.loginId())
-                .orElseThrow(() -> new AuthException("해당 아이디로 가입된 정보가 없습니다."));
+                .orElseThrow(() -> new AuthException(ErrorCode.USER_NOT_FOUND));
 
         if (!passwordEncoder.matches(requestLoginDto.password(), user.getPassword())) {
-            throw new AuthException("비밀번호가 일치하지 않습니다.");
+            throw new AuthException(ErrorCode.PASSWORD_NOT_EQUAL);
         }
 
         return user;
@@ -33,7 +34,7 @@ public class AuthService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String loginId) throws UsernameNotFoundException {
         User user = userRepository.findByLoginId(loginId)
-                .orElseThrow(() -> new AuthException("as"));
+                .orElseThrow(() -> new AuthException(ErrorCode.USER_NOT_FOUND));
         return new AuthenticatedUser(user);
     }
 
