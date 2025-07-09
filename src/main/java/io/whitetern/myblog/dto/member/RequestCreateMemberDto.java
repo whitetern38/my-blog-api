@@ -1,4 +1,4 @@
-package io.whitetern.myblog.dto.user;
+package io.whitetern.myblog.dto.member;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.whitetern.myblog.constants.ErrorMessage;
@@ -9,7 +9,7 @@ import jakarta.validation.constraints.Pattern;
 
 import java.time.LocalDateTime;
 
-public record RequestCreateUserDto(
+public record RequestCreateMemberDto(
     @NotBlank(message = ErrorMessage.EMPTY_LOGIN_ID)
     @Pattern(regexp = RegularExpression.LOGIN_ID, message = ErrorMessage.INVALID_LOGIN_ID)
     String loginId,

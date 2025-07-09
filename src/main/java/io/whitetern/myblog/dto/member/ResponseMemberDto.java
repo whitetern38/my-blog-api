@@ -1,11 +1,11 @@
-package io.whitetern.myblog.dto.user;
+package io.whitetern.myblog.dto.member;
 
 import lombok.Builder;
 
 import java.time.LocalDate;
 
 @Builder
-public record ResponseUserDto(
+public record ResponseMemberDto(
     String loginId,
     String email,
     String phone,

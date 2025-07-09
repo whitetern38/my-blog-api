@@ -1,19 +1,30 @@
 package io.whitetern.myblog.dto;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import io.whitetern.myblog.constants.ErrorCode;
+import org.springframework.http.ResponseEntity;
 
-@Getter
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ApiResponse<T> {
 
-    private String status;
+    private int code;
     private String message;
     private T data;
 
-//    public static <T> ApiResponse<T> success(T data) {
-//        return new ApiResponse<>("success", "");
-//    }
+    private ApiResponse() {};
+
+    protected ApiResponse(int code, String message, T data) {
+        this.code = code;
+        this.message = message;
+        this.data = data;
+    }
+
+    public static <T> ResponseEntity<ApiResponse<T>> success(T data) {
+        return ResponseEntity.ok(new ApiResponse<T>(2000, "success", data));
+    }
+
+    public static ResponseEntity<?> fail(ErrorCode errorCode) {
+        return ResponseEntity
+                .status(errorCode.getStatus())
+                .build();
+    }
 
 }

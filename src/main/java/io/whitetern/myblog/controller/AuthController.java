@@ -1,6 +1,6 @@
 package io.whitetern.myblog.controller;
 
-import io.whitetern.myblog.domain.User;
+import io.whitetern.myblog.domain.Member;
 import io.whitetern.myblog.dto.auth.RequestLoginDto;
 import io.whitetern.myblog.service.AuthService;
 import jakarta.servlet.http.HttpSession;
@@ -24,8 +24,8 @@ public class AuthController {
             @RequestBody @Valid RequestLoginDto requestLoginDto,
             HttpSession session
     ) {
-        User user = authService.login(requestLoginDto);
-        session.setAttribute("user", user);
+        Member member = authService.login(requestLoginDto);
+        session.setAttribute("user", member);
 
         return ResponseEntity.ok("로그인 성공");
     }

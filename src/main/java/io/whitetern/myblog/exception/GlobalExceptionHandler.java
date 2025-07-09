@@ -1,7 +1,5 @@
-package io.whitetern.myblog.exception.handler;
+package io.whitetern.myblog.exception;
 
-import io.whitetern.myblog.exception.AuthException;
-import io.whitetern.myblog.exception.UserException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -21,14 +19,9 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors.get(0));
     }
 
-    @ExceptionHandler(UserException.class)
-    public ResponseEntity<String> handleUserException(UserException e) {
+    @ExceptionHandler(CustomException.class)
+    public ResponseEntity<String> handleCustomException(CustomException e) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-    }
-
-    @ExceptionHandler(AuthException.class)
-    public ResponseEntity<String> handleAuthException(AuthException e) {
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
     }
 
 }

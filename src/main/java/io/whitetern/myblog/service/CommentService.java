@@ -2,13 +2,13 @@ package io.whitetern.myblog.service;
 
 import io.whitetern.myblog.domain.Comment;
 import io.whitetern.myblog.domain.Post;
-import io.whitetern.myblog.domain.User;
+import io.whitetern.myblog.domain.Member;
 import io.whitetern.myblog.dto.comment.RequestCreateCommentDto;
 import io.whitetern.myblog.dto.comment.RequestUpdateCommentDto;
 import io.whitetern.myblog.dto.comment.ResponseCommentDto;
 import io.whitetern.myblog.repository.comment.CommentRepository;
 import io.whitetern.myblog.repository.post.PostRepository;
-import io.whitetern.myblog.repository.user.UserRepository;
+import io.whitetern.myblog.repository.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,11 +18,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class CommentService {
 
     private final CommentRepository commentRepository;
-    private final UserRepository userRepository;
+    private final MemberRepository memberRepository;
     private final PostRepository postRepository;
 
     public ResponseCommentDto createComment(RequestCreateCommentDto requestCreateCommentDto) {
-        User user = userRepository.findById(requestCreateCommentDto.userId())
+        Member member = memberRepository.findById(requestCreateCommentDto.userId())
                 .orElseThrow(IllegalArgumentException::new);
 
         Post post = postRepository.findById(requestCreateCommentDto.postId())
@@ -31,7 +31,7 @@ public class CommentService {
         Comment createdComment = commentRepository.save(
                 Comment.builder()
                         .post(post)
-                        .user(user)
+                        .member(member)
                         .content(requestCreateCommentDto.content())
                         .build()
         );

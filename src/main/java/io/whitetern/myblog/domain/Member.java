@@ -2,22 +2,19 @@ package io.whitetern.myblog.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
-@Table(name = "user")
+@Table(name = "members")
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class User extends BaseTimeEntity {
+public class Member extends BaseTimeEntity {
 
     @Id
-    @Column(name = "user_id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -42,14 +39,14 @@ public class User extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "member")
     private List<Post> posts = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "member")
     private List<Comment> comments = new ArrayList<>();
 
     @Builder
-    public User(String loginId, String email, String password, String name, String phone, LocalDateTime birthDate, UserRole userRole) {
+    public Member(String loginId, String email, String password, String name, String phone, LocalDateTime birthDate, UserRole userRole) {
         this.loginId = loginId;
         this.password = password;
         this.name = name;

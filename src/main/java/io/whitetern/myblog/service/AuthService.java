@@ -1,11 +1,10 @@
 package io.whitetern.myblog.service;
 
-import io.whitetern.myblog.auth.AuthenticatedUser;
 import io.whitetern.myblog.constants.ErrorCode;
-import io.whitetern.myblog.domain.User;
+import io.whitetern.myblog.domain.Member;
 import io.whitetern.myblog.dto.auth.RequestLoginDto;
-import io.whitetern.myblog.exception.AuthException;
-import io.whitetern.myblog.repository.user.UserRepository;
+import io.whitetern.myblog.exception.CustomException;
+import io.whitetern.myblog.repository.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -17,25 +16,26 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class AuthService implements UserDetailsService {
 
-    private final UserRepository userRepository;
+    private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public User login(RequestLoginDto requestLoginDto) {
-        User user = userRepository.findByLoginId(requestLoginDto.loginId())
-                .orElseThrow(() -> new AuthException(ErrorCode.USER_NOT_FOUND));
+    public Member login(RequestLoginDto requestLoginDto) {
+        Member member = memberRepository.findByLoginId(requestLoginDto.loginId())
+                .orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_FOUND));
 
-        if (!passwordEncoder.matches(requestLoginDto.password(), user.getPassword())) {
-            throw new AuthException(ErrorCode.PASSWORD_NOT_EQUAL);
+        if (!passwordEncoder.matches(requestLoginDto.password(), member.getPassword())) {
+            throw new CustomException(ErrorCode.PASSWORD_NOT_EQUAL);
         }
 
-        return user;
+        return member;
     }
 
     @Override
     public UserDetails loadUserByUsername(String loginId) throws UsernameNotFoundException {
-        User user = userRepository.findByLoginId(loginId)
-                .orElseThrow(() -> new AuthException(ErrorCode.USER_NOT_FOUND));
-        return new AuthenticatedUser(user);
+        Member member = memberRepository.findByLoginId(loginId)
+                .orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_FOUND));
+        return null;
+//        return new AuthenticatedUser(member);
     }
 
 }

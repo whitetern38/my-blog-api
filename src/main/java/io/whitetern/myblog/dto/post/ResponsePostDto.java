@@ -9,7 +9,7 @@ public record ResponsePostDto(
     Long postId,
     String title,
     String content,
-    Long userId,
+    Long memberId,
     int readCnt,
     LocalDateTime createdAt,
     LocalDateTime updatedAt
