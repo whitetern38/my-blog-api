@@ -34,6 +34,7 @@ public class AuthService implements UserDetailsService {
     public UserDetails loadUserByUsername(String loginId) throws UsernameNotFoundException {
         Member member = memberRepository.findByLoginId(loginId)
                 .orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_FOUND));
+        // todo modify
         return null;
 //        return new AuthenticatedUser(member);
     }
